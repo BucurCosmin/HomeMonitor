@@ -1,0 +1,7 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "chart.js": "chartjs#v2.7.1"
+  }
+}

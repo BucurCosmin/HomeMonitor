@@ -15,6 +15,10 @@ namespace WebMonitor.Data
         {
         }
 
+        public DbSet<MonitorData> SensorsData { get; set; }
+        public DbSet<SensorData> Sensors { get; set; }
+        public DbSet<AlarmData> Alarms { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

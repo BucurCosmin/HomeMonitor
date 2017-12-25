@@ -37,6 +37,7 @@ namespace WebMonitor
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddScoped<ISensorsService, SensorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

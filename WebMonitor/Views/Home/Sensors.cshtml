@@ -1,0 +1,33 @@
+﻿@model SensorsViewModel;
+
+@{
+    ViewData["Title"] = "Sensors";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="panel panel-default sensor-panel">
+    <div class="panel-heading">@ViewData["Title"]</div>
+    <table class="table table-hoover">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>AlarmHI</td>
+                <td>AlarmHIHI</td>
+                <td>AlarmLO</td>
+                <td>AlarmLOLO</td>
+            </tr>
+        </thead>
+
+        @foreach (var sensor in Model.Sensors)
+        {
+        <tr>
+            <td>@sensor.Name</td>
+            <td>@sensor.AlarmHI</td>
+            <td>@sensor.AlarmHIHI</td>
+            <td>@sensor.AlarmLO</td>
+            <td>@sensor.AlarmLOLO</td>
+        </tr>
+
+        }
+    </table>
+</div>

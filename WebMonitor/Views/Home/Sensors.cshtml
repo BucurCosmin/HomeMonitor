@@ -10,22 +10,32 @@
     <table class="table table-hoover">
         <thead>
             <tr>
+                <td>Id</td>
                 <td>Name</td>
                 <td>AlarmHI</td>
                 <td>AlarmHIHI</td>
                 <td>AlarmLO</td>
                 <td>AlarmLOLO</td>
+                <td>Maximum</td>
+                <td>Minimum</td>
+                <td>Logging</td>
+                <td>DeadBand</td>
             </tr>
         </thead>
 
         @foreach (var sensor in Model.Sensors)
         {
         <tr>
+            <td>@sensor.Id</td>
             <td>@sensor.Name</td>
             <td>@sensor.AlarmHI</td>
             <td>@sensor.AlarmHIHI</td>
             <td>@sensor.AlarmLO</td>
             <td>@sensor.AlarmLOLO</td>
+            <td>@sensor.MaxValue</td>
+            <td>@sensor.MinValue</td>
+            <td>@sensor.Logging</td>
+            <td>@sensor.DeadBand</td>
         </tr>
 
         }

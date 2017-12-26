@@ -15,5 +15,9 @@ namespace WebMonitor.Models
         public double? AlarmHIHI { get; set; }
         public double? AlarmLO { get; set; }
         public double? AlarmLOLO { get; set; }
+        public bool Logging { get; set; }
+        public double MaxValue { get; set; }
+        public double MinValue { get; set; }
+        public double DeadBand { get; set; }
     }
 }

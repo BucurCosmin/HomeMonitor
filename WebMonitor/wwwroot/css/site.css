@@ -42,3 +42,14 @@ table tr.done {
     text-decoration: line-through;
     color: #888;
 }
+
+.NewSensor {
+    table-layout: fixed;
+    width: 100%;
+    white-space:nowrap;
+}
+.NewSensor td {
+    white-space:normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

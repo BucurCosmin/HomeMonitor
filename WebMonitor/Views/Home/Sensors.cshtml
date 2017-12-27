@@ -37,7 +37,37 @@
             <td>@sensor.Logging</td>
             <td>@sensor.DeadBand</td>
         </tr>
-
         }
     </table>
+</div>
+<div class="panel panel-default sensor-panel">
+    <div class="panel-heading">New Sensor</div>
+    <table class="NewSensor">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>AlarmHI</td>
+                <td>AlarmHIHI</td>
+                <td>AlarmLO</td>
+                <td>AlarmLOLO</td>
+                <td>Maximum</td>
+                <td>Minimum</td>
+                <td>Logging</td>
+                <td>DeadBand</td>
+            </tr>
+        </thead>
+        <tr>
+            <td><input name="sensor-name" id="sensor-name" type="text"></td>
+            <td><input name="sensor-AlarmHI" id="sensor-alarmHI" type="number"></td>
+            <td><input name="sensor-AlarmHIHI" id="sensor-alarmHIHI" type="number"></td>
+            <td><input name="sensor-AlarmLO" id="sensor-alarmLO" type="number"></td>
+            <td><input name="sensor-AlarmLOLO" id="sensor-alarmLOLO" type="number"></td>
+            <td><input name="sensor-MaxValue" id="sensor-MaxValue" type="number"></td>
+            <td><input name="sensor-MinValue" id="sensor-MinValue" type="number"></td>
+            <td><input name="sensor-Logging" id="sensor-Logging" type="checkbox"></td>
+            <td><input name="sensor-Deadband" id="sensor-Deadband" type="number"></td>
+        </tr>
+    </table>
+    <button type="button" name ="button-add-sensor" id="button-add-sensor">Add</button>
+
 </div>

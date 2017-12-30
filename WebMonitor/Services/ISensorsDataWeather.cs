@@ -6,9 +6,9 @@ using WebMonitor.Models;
 
 namespace WebMonitor.Services
 {
-    public interface ISensorsService
+    public interface ISensorsDataWeather
     {
-        Task<IEnumerable<SensorData>> GetSensorsAsync();
-        Task<bool> AddSensorAsync(Sensor newSensor);
+        void AddWeatherSensorData(WeatherData data);
+        WeatherData GetLastWeatherData();
     }
 }

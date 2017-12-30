@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using WebMonitor.Models;
 using WebMonitor.Services;
 
@@ -12,14 +16,17 @@ namespace WebMonitor.Controllers
     public class HomeController : Controller
     {
         private readonly ISensorsService _sensorService;
+        private readonly ISensorsDataWeather _sensorsDataWeather;
 
-        public HomeController(ISensorsService SensorService)
+        public HomeController(ISensorsService SensorService,ISensorsDataWeather sensorsDataWeather)
         {
             _sensorService = SensorService;
+            _sensorsDataWeather = sensorsDataWeather;
         }
         public IActionResult Index()
         {
-            return View();
+            WeatherData wd = _sensorsDataWeather.GetLastWeatherData();
+            return View(wd);
         }
 
         public IActionResult Alarms()
@@ -44,6 +51,44 @@ namespace WebMonitor.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        [Route("Home/AddNewSensor")]
+        public async Task<IActionResult> AddNewSensor(String newSensorJSON)
+        {
+            string Data;
+            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                Data = await reader.ReadToEndAsync();
+
+            }
+            
+            Sensor newSensor = JsonConvert.DeserializeObject<Sensor>(Data);
+
+ //           if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            var succesfull = await _sensorService.AddSensorAsync(newSensor);
+            if (!succesfull)
+            {
+                return BadRequest(new { Error = "could not add sensor" });
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Home/AddWeatherData")]
+        public async Task<IActionResult> AddWeatherData(string WeatherData)
+        {
+            string Data;
+            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                Data = await reader.ReadToEndAsync();
+
+            }
+            WeatherData weather = JsonConvert.DeserializeObject<WeatherData>(Data);
+            _sensorsDataWeather.AddWeatherSensorData(weather);
+
+            return Ok();
         }
     }
 }

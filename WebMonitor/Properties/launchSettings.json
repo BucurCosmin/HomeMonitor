@@ -2,8 +2,12 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/WebMonitor",
+      "sslPort": 0
+    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:58702/",
+      "applicationUrl": "http://192.168.0.105:58702/",
       "sslPort": 0
     }
   },
@@ -16,7 +20,7 @@
       }
     },
     "WebMonitor": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

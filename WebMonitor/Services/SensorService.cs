@@ -22,5 +22,24 @@ namespace WebMonitor.Services
             var sensors = await _context.Sensors.ToArrayAsync();
             return sensors;
         }
+
+        public async Task<bool> AddSensorAsync(Sensor newSensor)
+        {
+            var entity = new SensorData()
+            {
+                AlarmHI = newSensor.AlarmHI,
+                Name = newSensor.Name,
+                AlarmHIHI = newSensor.AlarmHIHI,
+                AlarmLO = newSensor.AlarmLO,
+                AlarmLOLO = newSensor.AlarmLOLO,
+                Logging = newSensor.Logging,
+                DeadBand = newSensor.DeadBand,
+                MaxValue = newSensor.MaxValue,
+                MinValue = newSensor.MinValue
+            };
+            _context.Sensors.Add(entity);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

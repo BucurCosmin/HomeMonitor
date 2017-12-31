@@ -10,5 +10,6 @@ namespace WebMonitor.Services
     {
         void AddWeatherSensorData(WeatherData data);
         WeatherData GetLastWeatherData();
+        Task<WeatherDataViewModel> GetWeatherDataAsync(int hours);
     }
 }

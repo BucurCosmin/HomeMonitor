@@ -1,0 +1,53 @@
+﻿@model WeatherDataViewModel;
+@{
+    ViewData["Title"] = "Trends";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<canvas class="chartjs" id="chart1" ></canvas>
+<script>
+    var timeFormat = 'DD/MM/YYYY HH:mm:ss';
+    var config = {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: "Dataset with point data",
+                fill: false,
+                data: [
+                @foreach (var data in Model.WeatherDataPoints)
+                {
+                    @:{ x: "@data.Timestamp.ToString()",y: @data.Temperature},
+                }
+                ],
+            }]
+        },
+        options: {
+            title: {
+                text: "Chart with Time Scale"
+            },
+            scales: {
+                xAxes: [{
+                    type: "time",
+                    time: {
+                        format: timeFormat,
+                        // round: 'day'
+                        tooltipFormat: 'll HH:mm'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    }
+                },],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'temperature'
+                    }
+                }]
+            },
+        }
+    };
+    var ctx = document.getElementById("chart1").getContext("2d");
+    window.myLine = new Chart(ctx, config);
+</script>
+

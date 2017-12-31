@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +38,16 @@ namespace WebMonitor.Services
                 Temperature = data.Temperature,
                 Pressure = data.Pressure
             };
+        }
+
+        public async Task<WeatherDataViewModel> GetWeatherDataAsync(int hours)
+        {
+            DateTime timebegin = DateTime.Now.Subtract(new TimeSpan(hours, 0, 0));
+            IEnumerable<MonitorData> values= await _context.SensorsData.Where<MonitorData>(Data => Data.Timestamp > timebegin ).ToArrayAsync();
+            WeatherDataViewModel model = new WeatherDataViewModel();
+            model.WeatherDataPoints = values;
+            return model;
+            
         }
     }
 }

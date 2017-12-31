@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <script src="~/js/gauge.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/chart.js/dist/Chart.bundle.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -32,6 +34,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Trends">Trends</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Alarms">Alarms</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Sensors">Sensors</a></li>
                 </ul>

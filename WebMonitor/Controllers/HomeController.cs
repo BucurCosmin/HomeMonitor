@@ -29,6 +29,20 @@ namespace WebMonitor.Controllers
             return View(wd);
         }
 
+        public IActionResult UpdateWeatherView()
+        {
+            WeatherData wd = _sensorsDataWeather.GetLastWeatherData();
+            return PartialView("SensorsView1", wd);
+
+        }
+        
+        public async Task<IActionResult> Trends()
+        {
+            var data= await _sensorsDataWeather.GetWeatherDataAsync(1);
+            
+            return View(data);
+        }
+
         public IActionResult Alarms()
         {
             ViewData["Message"] = "Your application description page.";
@@ -89,6 +103,15 @@ namespace WebMonitor.Controllers
             _sensorsDataWeather.AddWeatherSensorData(weather);
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("Home/GetLastWeatherData")]
+        public string[] GetLastWeatherData()
+        {
+            WeatherData wd = _sensorsDataWeather.GetLastWeatherData();
+            string[] data = { wd.Temperature.ToString(), wd.Pressure.ToString() };
+            return data;
         }
     }
 }
